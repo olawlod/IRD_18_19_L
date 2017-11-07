@@ -1,0 +1,70 @@
+---
+title: "Drzewa decyzyjne w R"
+author: Michał Kaftanowicz
+date: 2017-11-07
+output: beamer_presentation
+---
+  
+# Powtórzenie pojęć
+## Drzewo to spójny graf acykliczny
+* Krawędzie tego grafu to gałęzie drzewa (branches)
+* Wierzchołki tego grafu to węzły drzewa (nodes)
+* Wierzchołki tego grafu z tylko jedną krawędzią to liście drzewa (leaves)
+
+## Drzewo decyzyjne (klasyfikacyjne)
+* do węzła wchodzi jedna gałąź
+* w węźle zachodzi test, od którego zależy dalsza ścieżka w drzewie
+* liście reprezentują etykiety klasfikacji
+
+# Powtórzenie pojęć
+## Cechy drzew decyzyjnych
+* proste w interpretacji
+* algorytm zachłanny
+
+# Przykład drzewa decyzyjnego
+![by Duncan Hull](images/Duncan_Hull.jpg)
+
+# Drzewa decyzyjne w R
+## Biblioteka RPART
+
+```{r}
+library(rpart)
+```
+
+Recursive Partitioning and Regression Trees
+
+# Zbiór danych: pasażerowie Titanica
+
+```{r, echo = FALSE}
+titanic_fpath <- "~/Dropbox/PhD/Indukowane Reguły Decyzyjne fall 2017/github/data/titanic_train.csv"
+tdf <- read.csv(titanic_fpath)
+```
+
+```
+Kolumna   Definicja i wartości
+survival  Przeżył(a)	0 = nie, 1 = tak
+pclass    klasa biletu	(1, 2, 3)
+sex       płeć
+age       wiek
+sibsp     liczba rodzeństwa lub małżonków na pokładzie
+parch     liczba rodziców lub dzieci na pokładzie
+ticket    numer biletu	
+fare      opłata
+cabin     numer kabinu
+embarked  port, w którym pasażer(ka) wstąpił(a) na pokład: 
+C = Cherbourg, Q = Queenstown, S = Southampton
+```
+
+# Eksploracja danych
+
+```{r}
+str(tdf)
+```
+
+# Eksploracja danych
+
+```{r}
+table(tdf$Survived)
+```
+
+
