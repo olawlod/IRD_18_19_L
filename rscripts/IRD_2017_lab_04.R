@@ -13,7 +13,11 @@ set.seed(1)
 
 # Informacje o zbiorze danych: https://rpubs.com/chitrav/118220
 
-data_fpath <- 'github/data/car.data.txt' # Wpisac poprawna sciezke dostepu w zaleznosci od lokalizacji pliku
+
+#WIN_PATH <- "data\car.data.txt"
+
+
+data_fpath <- 'data/car.data.txt' # Wpisac poprawna sciezke dostepu w zaleznosci od lokalizacji pliku
 DATA_SET <- read.csv(data_fpath, header = FALSE)
 names(DATA_SET) <- c("buying", "maint", "doors", "persons",
                      "lug_boot", "safety", "class")
@@ -45,6 +49,17 @@ DATA_SET$class <- factor(ifelse(DATA_SET$class == "unacc", 0, 1))
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 ################################################################################
 ################################################################################
 
@@ -68,7 +83,7 @@ library(party) # inna biblioteka do drzew decyzyjnych
 # that maximizes an information measure (e.g. Gini coefficient).
 
 # Alternatywny sposob podzialu zbioru na uczacy i testowy
-TRAINING_SET_FRACTION <- 0.2
+TRAINING_SET_FRACTION <- 0.7
 training.set.index <- (runif(nrow(DATA_SET)) < TRAINING_SET_FRACTION)
 train.set <- DATA_SET[training.set.index, ]
 test.set <- DATA_SET[!training.set.index, ]
@@ -95,7 +110,7 @@ plot(ctree.model, tnex = 2, type = "extended")
 devAskNewPage(ask = TRUE) # do kontrolowania wydruku wynikow
 
 # To samo poprzednia metoda - rpart
-rpart.model <- rpart(class ~ ., train.set, cp = 0.01, minsplit = 2)
+rpart.model <- rpart(class ~ ., train.set, cp = 0.01, minsplit = 3)
 plotcp(rpart.model)
 
 # Przycinanie drzewa
@@ -136,4 +151,7 @@ FormulaString <- function(tdf, response_colname)
   return(paste(response_colname, paste(predictor_colname_vec, collapse = " + "), sep = " ~ "))
 }
 
-FormulaString(tdf, "class")
+FormulaString(train.set, "class")
+
+rpart.model <- rpart(formula = FormulaString(train.set, "class"), train.set, cp = 0.01, minsplit = 2)
+rpart.model
