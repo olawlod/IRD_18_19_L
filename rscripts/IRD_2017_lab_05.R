@@ -465,4 +465,3 @@ plot(performance(prediction(prognoza_ciagla,test$quality),"lift","rpp"),lwd=2, c
 # Na postawie macierzy klasyfikacji policz dla obu drzew accuracy, sensitivity i specificity.
 
 # Narysuj krzywa ROC i lift oraz policz AUC dla obu drzew.
->>>>>>> c47daf81cbc1187cee7c163b9b9f5437921973f1
