@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ################################################################################
 # IRD zajecia laboratoryjne nr 5
 # Drzewa decyzyjne, drzewa regresji, ocena modeli
