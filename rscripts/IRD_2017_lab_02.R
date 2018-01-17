@@ -8,7 +8,7 @@
 
 ### 1) Wczytywanie i przetwarzanie danych
 
-# Sciaągawka do zadania - materialy z wykladu z 2017-10-18
+# Sciągawka do zadania - materialy z wykladu z 2017-10-18
 # w pliku IRD_2017_lecture_2017-10-17_data_processing_in_R.R
 
 # Cwiczenie 1 - Dokonaj operacji na danych o rybkach zaladowanych do pamieci
