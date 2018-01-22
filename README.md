@@ -13,4 +13,4 @@ Po zajęciach został w sali pomarańczowy pendrive z napisem "gsk". Zostawiam g
 Kolokwium grupy 103 odbędzie się 24.01 w sali 3E w budynku C, w godzinach 15.20-17.00. NIE 17.01, jak było powiedziane na zajęciach. Uprzejmie proszę o przekazanie tej informacji członkom grupy, którzy mogą nie śledzić ogłoszeń. (Konrad Kostrzewa)
 
 ### 2018-01-22
-W katalogu rscripts pojawił się skrypt IRD_2017_lab_kolokwium_instalator_pakietow.R, którego można użyć jako pomocy do automatycznego zainstalowania pakietów potrzebnych na kolokwium, które odbędzie się w środę 2018-02-24. Pierwsze 15 minut zajęć będzie przeznaczone na upewnienie się, że wszystkie pakiety są poprawnie zainstalowane, i ewentualne doinstalowanie brakujących.
+W katalogu rscripts pojawił się skrypt IRD_2017_lab_kolokwium_instalator_pakietow.R, którego można użyć jako pomocy do automatycznego zainstalowania pakietów potrzebnych na kolokwium, które odbędzie się w środę 2018-01-24. Pierwsze 15 minut zajęć będzie przeznaczone na upewnienie się, że wszystkie pakiety są poprawnie zainstalowane, i ewentualne doinstalowanie brakujących.
