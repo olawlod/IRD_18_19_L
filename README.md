@@ -17,3 +17,6 @@ W katalogu rscripts pojawił się skrypt IRD_2017_lab_kolokwium_instalator_pakie
 
 ### 2018-01-28
 II termin kolokwium z ćwiczeń laboratoryjnych odbędzie się w poniedziałek 2018-02-05 o godzinie 17:10 w sali 108 w budynku G. Wyniki I terminu pojawią się jutro (2018-01-29).
+
+### 2018-01-29
+Wyniki kolokwium z ćwiczeń pojawią się razem z wynikami z egzaminu na niezbędniku Dr Wrzosek.
