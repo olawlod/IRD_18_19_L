@@ -20,3 +20,7 @@ II termin kolokwium z ćwiczeń laboratoryjnych odbędzie się w poniedziałek 2
 
 ### 2018-01-29
 Wyniki kolokwium z ćwiczeń pojawią się razem z wynikami z egzaminu na niezbędniku Dr Wrzosek.
+
+### 2018-01-31
+Szanowni Państwo,
+omawianie prac odbędzie się w 1 lutego (czwartek) o godzinie 14:00 w sali 219 w budynku M. Pierwszeństwo w omawianiu prac będą miały osoby, które o 15:20 piszą kolokwium z wykładu. 
