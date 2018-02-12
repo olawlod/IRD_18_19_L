@@ -1,5 +1,5 @@
-# sgh_ird_2017
-Indukowane Reguły Decyzyjne w Szkole Głównej Handlowej, semestr zimowy 2017, studia dzienne po polsku
+# Indukowane Reguły Decyzyjne
+SGH, semestr zimowy roku akademickiego 2017/2018, studia dzienne w języku polskim.
 
 ## Ogłoszenia
 
@@ -27,3 +27,6 @@ omawianie prac odbędzie się w 1 lutego (czwartek) o godzinie 14:00 w sali 219 
 
 ### 2018-02-06
 W katalogu exams pojawiły się wyniki II terminu kolokwium z ćwiczeń, które odbyło się wczoraj. Osoby zainteresowane oglądaniem prac proszę o kontakt mailowy najpóźniej do środy 2018-02-07 do godziny 18:00. Datę i godzinę potwierdzimy mailowo, wstępnie proponuję czwartek 2018-02-08 18:00 w Jajku w budynku G. [MK]
+
+### 2018-02-12
+III termin kolokwium z ćwiczeń odbędzie się w środę 2018-02-21 o godzinie 17:10 w sali 235 budynku G. W ramach przygotowań do tego terminu sugeruję powtórzyć zagadnienia, które pojawiły się na poprzednich terminach, z naciskiem na termin II.
