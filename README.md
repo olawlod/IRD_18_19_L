@@ -30,3 +30,6 @@ W katalogu exams pojawiły się wyniki II terminu kolokwium z ćwiczeń, które 
 
 ### 2018-02-12
 III termin kolokwium z ćwiczeń odbędzie się w środę 2018-02-21 o godzinie 17:10 w sali 235 budynku G. W ramach przygotowań do tego terminu sugeruję powtórzyć zagadnienia, które pojawiły się na poprzednich terminach, z naciskiem na termin II.
+
+### 2018-02-22
+W katalogu exams pojawiły się wyniki III terminu kolokwium z ćwiczeń, które odbyło się wczoraj.
