@@ -1,4 +1,8 @@
-### Zajęcia 1 - Wprowadzenie do języka R
+################################################################################
+### IRD
+### Lab 01
+### Wprowadzenie do języka R
+################################################################################
 
 # Plan
 # 1) Organizacja zajęć
@@ -10,12 +14,19 @@
 
 ### 1) Organizacja zajęć
 
-# zaliczenie zajęć od 50pkt, składowe:
-## ćwiczenia: kolokwium za 50pkt z R na ostatnich zajęciach, 5 zadań, 
-## można mieć materiały drukowane i korzystać z Google
+# zaliczenie zajęć za minimum 50pkt, składowe:
+## ćwiczenia: kolokwium za 50pkt, 2 terminy w sesji
+## można mieć materiały (dowolne) i korzystać z Internetu, nie można się komunikować
 ## wykład: test za 50pkt
-# adres niezbednika: https://www.e-sgh.pl/kaftanowicz/IRD
+# adres repozytorium z materiałami: https://github.com/kaftanowicz/ird
 
+### 1.1) Dygresja: kontrola wersji, git, github
+
+# Tutorial po polsku:
+# https://poznajprogramowanie.pl/git-tutorial-jak-zaczac-z-git/
+
+# Tutorial po angielsku - bez pisania kodu
+# https://guides.github.com/activities/hello-world/
 
 ### 2) Ogólnie o R
 
@@ -23,12 +34,18 @@
 # http://www.r-project.org/
 
 ## literatura: 
+
 # Kamiński B., Zawisza M. 'Receptury w R', http://bogumilkaminski.pl/projekty/)
 # Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani
 #  An Introduction to Statistical Learning with Applications in R 
-#  http://www-bcf.usc.edu/~gareth/ISL/
+
+# http://swirlstats.com/
+
+# http://www-bcf.usc.edu/~gareth/ISL/
+
 # http://cran.r-project.org/manuals.html
-# !!! google
+
+# Internet
 
 # instalacja 
 # http://r.meteo.uni.wroc.pl/
@@ -50,7 +67,7 @@
 
 ### 2.5) RStudio - praca z programem
 
-# Tworzymy projekt (File -> New Project...), np. "IRD_2017". W katalogu projektowym tworzomy katalogi rscripts oraz data.
+# Tworzymy projekt (File -> New Project...), np. "IRD". W katalogu projektowym tworzomy katalogi rscripts oraz data.
 # pobieramy z Internetu wskazane skrypty i pliki z danymi i umieszczamy w odpowiednich katalogach.
 
 ### 3) Wprowadzenie do R
@@ -429,12 +446,13 @@ lista[["c"]]
 lista$c
 
 # podwójny && porównuje pierwsze elementy, a pojedynczy poszczególne wartości
-# (lepiej nie używać tego typu sztuczek w poważnym kodzie)
 # & - i ,| - lub
 c(TRUE, TRUE) &  c(FALSE, TRUE)
 c(TRUE, TRUE) &&  c(TRUE, FALSE)
 c(TRUE, TRUE) &&  c(FALSE, FALSE)
 
+
+# Lepiej nie używać tego typu sztuczek w poważnym kodzie - tak jest bezpieczniej:
 all(c(TRUE, FALSE) & c(TRUE, FALSE))
 all(c(TRUE, FALSE) | c(TRUE, TRUE))
 

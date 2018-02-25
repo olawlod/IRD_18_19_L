@@ -1,6 +1,7 @@
 ################################################################################
-# IRD zajecia laboratoryjne nr 7
-# Reguly asocjacyjne oraz clustering (grupowanie)
+### IRD
+### Lab 07
+### Reguly asocjacyjne oraz clustering (grupowanie)
 ################################################################################
 
 # Skrypt wykorzystuje fragmenty kodu z artykulu 
