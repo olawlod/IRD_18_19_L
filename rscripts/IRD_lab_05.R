@@ -14,7 +14,6 @@ library(rpart) # do drzewa
 library(rpart.plot) # do rysowania drzewa
 #install.packages('ROCR')
 library(ROCR) # do krzywej ROC
-library(caret)
 
 # Wczytanie danych - prosze uzupelnic wlasciwa sciezke do pliku
 dane <- read.csv2('data/winequality-white.csv',  stringsAsFactors = FALSE, dec = '.')
@@ -46,26 +45,17 @@ train <- dane[train_index,]
 test <- dane[!train_index,]
 
 # budujemy i porownujemy 2 drzewa klasyfikacyjne
-d.klas <- rpart(quality~., data = train, method = "class", cp = 0.001)
+d.klas1 <- rpart(quality~., data = train, method = "class")
+d.klas2 <- rpart(quality~., data = train, method = "class", cp = 0.005)
 #plot(d.klas, margin = 0.2)
 #text(d.klas, pretty = 0)
-rpart.plot(d.klas, under=FALSE, fallen.leaves = FALSE, cex = 0.3)
-
-min.error <- which.min(d.klas$cptable[,"xerror"])
-opt.cp <- d.klas$cptable[min.error,"CP"]
-
-plotcp(d.klas)
-points(min.error, d.klas$cptable[min.error, "xerror"], pch = 19, col = "red")
-
-d.klas.przyciete <- prune.rpart(d.klas, cp = opt.cp)
-#plot(d.klas.przyciete, margin = 0.2)
-#text(d.klas.przyciete, pretty = 0)
-rpart.plot(d.klas.przyciete, under=FALSE, fallen.leaves = FALSE, cex = 0.5)
+rpart.plot(d.klas1, under=FALSE, fallen.leaves = FALSE, cex = 0.3)
+rpart.plot(d.klas2, under=FALSE, fallen.leaves = FALSE, cex = 0.3)
 
 # 3) Classification matrix + its statistics
 CM <- list()
-CM[["d.klas"]] <- table(predict(d.klas, new = test, type = "class"), test$quality)
-CM[["d.klas.przyciete"]] <- table(predict(d.klas.przyciete, new = test, type = "class"), test$quality)
+CM[["d.klas1"]] <- table(predict(d.klas1, new = test, type = "class"), test$quality)
+CM[["d.klas2"]] <- table(predict(d.klas2, new = test, type = "class"), test$quality)
 
 # Accuracy = odsetek poprawnie sklasyfikowanych odpowiedzi
 CalcAcc <- function(macierz) {
@@ -89,13 +79,6 @@ rownames(MER) <- Accuracy[[1]]
 MER
 
 ###############################################################################################
-# Zadanie 1
-###############################################################################################
-
-# napisz funkcje, ktora na podstawie macierzy klasyfikacji oblicza i zwraca
-# 3-elementowa nazwana liste zawierajaca informacje o accuracy, sensitivity i specificity modelu.
-
-###############################################################################################
 # ROC/LIFT/GAIN Curve
 ###############################################################################################
 
@@ -107,7 +90,7 @@ MER
 # Sensitivity/specificity plots: measure="sens", x.measure="spec".
 # Lift charts: measure="lift", x.measure="rpp".
 
-prognoza_ciagla <- predict(d.klas.przyciete, newdata = test)
+prognoza_ciagla <- predict(d.klas1, newdata = test)
 prognoza_ciagla <- as.vector(prognoza_ciagla[,2])
 
 # krzywa ROC - potrzebuje "ciaglej" prognozy
@@ -124,28 +107,8 @@ plot(performance(prediction(prognoza_ciagla,test$quality),"lift","rpp"),lwd=2, c
 #Lift is a measure of the effectiveness of a predictive model calculated 
 #as the ratio between the results obtained with and without the predictive model. 
 
-###############################################################################################
-# Zadanie 2
-###############################################################################################
-
-# Wczytaj dane o czerwonych winach (plik "winequality-red.csv"). Zamien wartosc zmiennej quality na
-# binarna, przyjmujac, ze wina o jakosci 6 lub wyzszej sa wysokiej jakosci, a pozostale - niskiej jakosci.
-# 
-# Podziel zbior na uczacy i testowy losowo w proporcji 0.8:0.2.
-# 
-# Zbuduj drzewo klasfikacyjne przewidujce jakosc czerwonego wina na podstawie jego parametrow chemicznych.
-# Przyjmij na poczatek parametr zlozonosci (complexity parameter) rowny 0.005. Zwizualizuj drzewo.
-# Narysuj wykres bledu w zaleznosci od wielkosci drzewa. Czerwoną kropką oznacz na wykresie wielkosc drzewa o minimalnym bledzie.
-# 
-# Zbuduj nowe drzewo powstale przez przyciecie poprzedniego drzewa do wartosci optymalnego parametru zlozonosci.
-# 
-# Policz macierze klasyfikacji dla obu drzew.
-# Na postawie macierzy klasyfikacji policz dla obu drzew accuracy, sensitivity i specificity.
-
-# Narysuj krzywa ROC i lift oraz policz AUC dla obu drzew.
-
 ################################################################################
-# Drzewa regresyjne: proste, duze i przyciete
+# Drzewa regresyjne
 ################################################################################
 
 # Wczytanie danych - ponownie
@@ -175,17 +138,6 @@ d.regr.duze <- rpart(quality ~. , data = train, cp = 0.003)
 #text(d.regr.duze, pretty = 0)
 rpart.plot(d.regr.duze, under=FALSE, fallen.leaves = FALSE, cex = 0.5)
 
-min.error <- which.min(d.regr.duze$cptable[,"xerror"])
-opt.cp <- d.regr.duze$cptable[min.error,"CP"]
-
-plotcp(d.regr.duze)
-points(min.error, d.regr.duze$cptable[min.error, "xerror"], pch = 19, col = "red")
-
-d.regr.przyciete <- prune.rpart(d.regr.duze, cp = opt.cp)
-#plot(d.regr.przyciete, margin = 0.2)
-#text(d.regr.przyciete, pretty = 0)
-rpart.plot(d.regr.przyciete, under=FALSE, fallen.leaves = FALSE, cex = 0.7)
-
 ################################################################################
 # Metody oceny drzewa regresji: Variable Importance, RSS, MAE, RMSE, RAE, RRSE, R^2
 ################################################################################
@@ -194,15 +146,14 @@ rpart.plot(d.regr.przyciete, under=FALSE, fallen.leaves = FALSE, cex = 0.7)
 
 varImp(lin_m)
 d.regr$variable.importance
-d.regr.przyciete$variable.importance
+d.regr.duze$variable.importance
 
 # odchylenia reszt - rozne miary
 
 # funkcja residuals liczy reszty = wartosci rzeczywiste - prognoza:
 all(as.vector(residuals(d.regr)) == train$quality - predict(d.regr, train))
 
-modele <- list("d.regr" = d.regr, "d.regr.duze" = d.regr.duze, "d.regr.przyciete" = d.regr.przyciete,
-               "lin_m" = lin_m)
+modele <- list("d.regr" = d.regr, "d.regr.duze" = d.regr.duze, "lin_m" = lin_m)
 
 OcenaModeli <- function(modele, dane, predicted_col_name) {
   
@@ -225,3 +176,27 @@ OcenaModeli <- function(modele, dane, predicted_col_name) {
 
 OcenaModeli(modele, train, 'quality')
 OcenaModeli(modele, test, 'quality')
+
+###############################################################################################
+# Zadanie 1
+###############################################################################################
+
+# napisz funkcje, ktora na podstawie macierzy klasyfikacji oblicza i zwraca
+# 3-elementowa nazwana liste zawierajaca informacje o accuracy, sensitivity i specificity modelu.
+# Sciagawka: https://en.wikipedia.org/wiki/Sensitivity_and_specificity#Confusion_matrix
+
+###############################################################################################
+# Zadanie 2
+###############################################################################################
+
+# Wczytaj dane o czerwonych winach (plik "winequality-red.csv"). Zamien wartosc zmiennej quality na
+# binarna, przyjmujac, ze wina o jakosci 6 lub wyzszej sa wysokiej jakosci, a pozostale - niskiej jakosci.
+# 
+# Podziel zbior na uczacy i testowy losowo w proporcji 0.8:0.2.
+# 
+# Zbuduj drzewo klasyfikacyjne przewidujce jakosc czerwonego wina na podstawie jego parametrow chemicznych.
+# Ustaw jego parametr zlozonosci (complexity parameter) na wartosc 0.005.
+
+# Zwizualizuj drzewo. Policz jego macierz klasyfikacji.
+# Na postawie macierzy klasyfikacji policz accuracy, sensitivity i specificity.
+# Narysuj krzywa ROC i lift oraz policz AUC.

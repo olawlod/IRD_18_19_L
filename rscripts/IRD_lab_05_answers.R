@@ -50,8 +50,8 @@ train_index <- runif(nrow(dane)) < train_proportion
 train <- dane[train_index,]
 test <- dane[!train_index,]
 
-# Zbuduj drzewo klasfikacyjne przewidujce jakosc czerwonego wina na podstawie jego parametrow chemicznych.
-# Przyjmij na poczatek parametr zlozonosci (complexity parameter) rowny 0.005. Zwizualizuj drzewo.
+# Zbuduj drzewo klasyfikacyjne przewidujce jakosc czerwonego wina na podstawie jego parametrow chemicznych.
+# Ustaw jego parametr zlozonosci (complexity parameter) na wartosc 0.005.
 
 cp_start <- 0.005 ## dobra praktyka jest wypisywanie zalozen wprost, w pomocnicznych zmiennych,
 ## jeszcze przed wywolaniem funkcji
@@ -61,37 +61,18 @@ library(rpart.plot)
 d.klas <- rpart(quality~., data = train, method = "class", cp = cp_start)
 rpart.plot(d.klas, under=FALSE, fallen.leaves = FALSE, cex = 0.3)
 
-# Narysuj wykres bledu w zaleznosci od wielkosci drzewa. 
-# Czerwoną kropką oznacz na wykresie wielkosc drzewa o minimalnym bledzie.
-# 
+# Policz macierz klasyfikacji.
 
-plotcp(d.klas)
-min.error <- which.min(d.klas$cptable[,"xerror"])
-opt.cp <- d.klas$cptable[min.error,"CP"]
-points(min.error, d.klas$cptable[min.error, "xerror"], pch = 19, col = "red")
+CM
+CM <- table(predict(d.klas, new = test, type = "class"), test$quality)
 
-# Zbuduj nowe drzewo powstale przez przyciecie poprzedniego drzewa do wartosci optymalnego parametru zlozonosci.
-# 
-
-d.klas.przyciete <- prune.rpart(d.klas, cp = opt.cp)
-rpart.plot(d.klas.przyciete, under=FALSE, fallen.leaves = FALSE, cex = 0.5)
-
-# Policz macierze klasyfikacji dla obu drzew.
-
-CM <- list()
-CM[["d.klas"]] <- table(predict(d.klas, new = test, type = "class"), test$quality)
-CM[["d.klas.przyciete"]] <- table(predict(d.klas.przyciete, new = test, type = "class"), test$quality)
-
-# Na postawie macierzy klasyfikacji policz dla obu drzew accuracy, sensitivity i specificity.
+# Na postawie macierzy klasyfikacji policz accuracy, sensitivity i specificity.
 
 ## Uzywajac funkcji napisanej w zadaniu 1:
 
-lapply(CM, EvaluateModel) # lapply stosuje funkcje po kolei do kazdego elementu listy i zwraca liste wynikow
+EvaluateModel(CM)
 
-# Narysuj krzywa ROC i lift oraz policz AUC dla obu drzew.
-
-## Zamiast pisac dwa razy to samo, wygodniej bedzie napisac funkcje, ktora to robi w sposob ogolny,
-## i zastosowac ja do obu drzew.
+# Narysuj krzywa ROC i lift oraz policz AUC.
 
 library(ROCR) # do krzywej ROC
 
@@ -115,7 +96,6 @@ EvaluateTree <- function(tree_model, data_set, response_column_name)
 }
 
 EvaluateTree(tree_model = d.klas, data_set = test, response_column_name = "quality")
-EvaluateTree(tree_model = d.klas.przyciete, data_set = test, response_column_name = "quality")
 
 # Za kazdym wywolaniem powstaje kilka wykresow, ale widac tylko ostatni.
 # Wczesniejsze mozna obejrzec, uzywajac strzalki wstecz nad wykresem.

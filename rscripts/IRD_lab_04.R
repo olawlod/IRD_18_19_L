@@ -4,7 +4,9 @@
 ### Drzewa decyzyjne
 ################################################################################
 
+################################################################################
 ### Przykład 1: Titanic i biblioteka rpart
+################################################################################
 
 # Źródła:
 # https://www.kaggle.com/c/titanic
@@ -17,7 +19,7 @@ library(caret) # do oceny wyników
 
 # Wczytanie danych
 
-titanic_fpath <- "github/data/titanic_full.csv"
+titanic_fpath <- "data/titanic_full.csv"
 tdf <- read.csv(titanic_fpath)
 
 # Ułamek liczby rekordów przeznaczony do zbioru testowego
@@ -28,6 +30,13 @@ test_bound <- floor(nrow(tdf)* test_prop)
 tdf <- tdf[sample(nrow(tdf)), ]
 tdf.test <- tdf[1:test_bound, ]
 tdf.train <- tdf[(test_bound+1):nrow(tdf), ]
+
+# Alternatywny sposob podzialu zbioru na uczacy i testowy
+test_prop <- 0.25
+test.set.index <- (runif(nrow(tdf)) < test_prop)
+tdf.test <- tdf[test.set.index, ]
+tdf.train <- tdf[!test.set.index, ]
+
 
 # Eksploracja danych
 
@@ -116,28 +125,54 @@ tdf.test$survival_predicted_forest<- predict(forest, tdf.test, OOB=TRUE, type = 
 EvaluateClassifier('survived', 'survival_predicted_forest', tdf.train)
 EvaluateClassifier('survived', 'survival_predicted_forest', tdf.test)
 
-### Przykład 2: Cars i biblioteka rpart
+################################################################################
+### Przyklad 2: Pakiet caret - na przykladzie drzewa klasyfikacyjnego 
+################################################################################
 
-# Inicjalizacja ziarna do zmiennych pseudolosowych
+# http://topepo.github.io/caret/index.html
+
+library(caret)
+
 set.seed(1)
 
-# Dane
+## podzial na zbior testowy i uczacy
+inTraining <- createDataPartition(data$income, p = .8, list = FALSE)
+training <- data[ inTraining,]
+#training  <- na.omit(training) # gdybysmy wczesniej nie usuneli z calego zbioru
+testing  <- data[-inTraining,]
 
-# Informacje o zbiorze danych: https://rpubs.com/chitrav/118220
-#WIN_PATH <- "data\car.data.txt"
+## budowa modelu na zbiorze uczacym - na poczatek okreslamy sposob uczenia
 
-data_fpath <- 'data/car.data.txt' # Wpisac poprawna sciezke dostepu w zaleznosci od lokalizacji pliku
-DATA_SET <- read.csv(data_fpath, header = FALSE)
-names(DATA_SET) <- c("buying", "maint", "doors", "persons",
-                     "lug_boot", "safety", "class")
+## 5-krotna walidacja krzyzowa
+fitControl <- trainControl(
+  method = "cv",
+  number = 5)
 
-# Eksploracja danych
-str(DATA_SET)
-summary(DATA_SET)
+# Najpierw proste drzewo z CV
+treeCaret_simple <- train(income ~ ., data = training, 
+                          method = "rpart", 
+                          trControl = fitControl)
 
-# Laczymy klasy acc, good, vgood w jedna
+plot(treeCaret_simple)
+rpart.plot(treeCaret_simple$finalModel)
 
-DATA_SET$class <- factor(ifelse(DATA_SET$class == "unacc", 0, 1))
+# Ewaluacja
+confusionMatrix(data = predict(treeCaret_simple, testing), reference = testing$income, mode = "everything")
+
+# Teraz recznie zadajemy zbior wartosci parametru zlozonosci do przeszukania
+rpartGrid <- expand.grid(cp = seq(0.001, 0.1, by = 0.005))
+
+treeCaret <- train(income ~ ., data = training, 
+                   method = "rpart", 
+                   trControl = fitControl,
+                   tuneGrid = rpartGrid)
+treeCaret
+# https://en.wikipedia.org/wiki/Cohen%27s_kappa
+plot(treeCaret)
+rpart.plot(treeCaret$finalModel)
+
+# Ewaluacja
+confusionMatrix(data = predict(treeCaret, testing), reference = testing$income, mode = "everything")
 
 ################################################################################
 # Zadanie 1
@@ -155,99 +190,35 @@ DATA_SET$class <- factor(ifelse(DATA_SET$class == "unacc", 0, 1))
 
 # Uzyj 80% rekordow jako zbioru uczacego i 20% jako zbioru testowego.
 
-################################################################################
+# Poczatek:
 
-### Przykład 3: Cars i biblioteka party (metoda ctree)
+# Inicjalizacja ziarna do zmiennych pseudolosowych
+set.seed(1)
 
-# Biblioteki
-library(party) # inna biblioteka do drzew decyzyjnych
+# Dane
 
-# Czym sie roznia rpart i ctree?
-
-# https://stats.stackexchange.com/questions/12140/conditional-inference-trees-vs-traditional-decision-trees
-
-# both rpart and ctree recursively perform univariate splits 
-# of the dependent variable based on values on a set of covariates.
-# rpart and related algorithms usually employ information measures 
-# (such as the Gini coefficient) for selecting the current covariate.
-# 
-# ctree, according to its authors (...) avoids the following variable selection bias 
-# of rpart (and related methods): They tend to select variables that have 
-# many possible splits or many missing values. 
-# Unlike the others, ctree uses a significance test procedure 
-# in order to select variables instead of selecting the variable 
-# that maximizes an information measure (e.g. Gini coefficient).
-
-# Ponowne wczytanie danych
+# Informacje o zbiorze danych: https://rpubs.com/chitrav/118220
 
 data_fpath <- 'data/car.data.txt' # Wpisac poprawna sciezke dostepu w zaleznosci od lokalizacji pliku
 DATA_SET <- read.csv(data_fpath, header = FALSE)
 names(DATA_SET) <- c("buying", "maint", "doors", "persons",
                      "lug_boot", "safety", "class")
 
+# Eksploracja danych
+str(DATA_SET)
+summary(DATA_SET)
+
 # Laczymy klasy acc, good, vgood w jedna
 
 DATA_SET$class <- factor(ifelse(DATA_SET$class == "unacc", 0, 1))
 
-# Alternatywny sposob podzialu zbioru na uczacy i testowy
-TRAINING_SET_FRACTION <- 0.7
-training.set.index <- (runif(nrow(DATA_SET)) < TRAINING_SET_FRACTION)
-train.set <- DATA_SET[training.set.index, ]
-test.set <- DATA_SET[!training.set.index, ]
+################################################################################
+# Zadanie 2
+################################################################################
 
-# Budowa modelu
-ctree.model <- ctree(factor(class) ~ ., data = train.set,
-                     controls = ctree_control(mincriterion = 0.99,
-                                              minsplit = 20))
-# Wizualizacja modelu
-plot(ctree.model, tnex = 2, type = "simple")
-plot(ctree.model, tnex = 2, type = "extended")
-
-# Roughly, the algorithm works as follows: 
-# 
-# 1) Test the global null hypothesis of independence between any of the input variables 
-# and the response (which may be multivariate as well). 
-# Stop if this hypothesis cannot be rejected. 
-# Otherwise select the input variable with strongest association to the response. 
-# This association is measured by a p-value corresponding to a test 
-# for the partial null hypothesis of a single input variable and the response. 
-# 
-# 2) Implement a binary split in the selected input variable. 
-# 
-# 3) Recursively repeat steps 1) and 2).
-
-devAskNewPage(ask = TRUE) # do kontrolowania wydruku wynikow
-
-# Ten sam zbiór danych, ale poprzednia metoda - rpart
-rpart.model <- rpart(class ~ ., train.set, cp = 0.01, minsplit = 3)
-plotcp(rpart.model)
-
-# Przycinanie drzewa
-minimum.error <- which.min(rpart.model$cptable[, "xerror"])
-optimal.complexity <- rpart.model$cptable[minimum.error, "CP"]
-points(minimum.error, rpart.model$cptable[minimum.error, "xerror"],
-       col = "red", pch = 19)
-rpart.model.pruned <- prune(rpart.model, cp = optimal.complexity)
-
-# Porownanie drzewa przed i po przycieciu
-rpart.plot(rpart.model, under=FALSE, tweak=1.3, fallen.leaves = TRUE)
-rpart.plot(rpart.model.pruned, under=FALSE, tweak=1.3, fallen.leaves = TRUE)
-
-# Porownanie wynikow metod
-confusion.matrix <- list()
-print(confusion.matrix[[1]] <- table(predict(ctree.model, new = test.set),
-                                     test.set$class))
-print(confusion.matrix[[2]] <- table(predict(rpart.model, type = "class",
-                                             newdata = test.set),
-                                     test.set$class))
-print(confusion.matrix[[3]] <- table(predict(rpart.model.pruned, type = "class",
-                                             newdata = test.set),
-                                     test.set$class))
-
-CalculateAccuracy <- function(confusion.matrix) {
-  return(sum(diag(confusion.matrix)) / sum(confusion.matrix))
-}
-
-print(data.frame(model = c("ctree.model", "rpart.model", "rpart.model.pruned"),
-                 accuracy = sapply(confusion.matrix, CalculateAccuracy)),
-      row.names = FALSE)
+# Uzywajac pakietu caret, zbuduj model drzewa klasyfikacyjnego 
+# do przewidywania jakosci czerwonego wina. 
+# Uzyj 3-krotnej walidacji krzyzowej. Pokaz jego metryki
+# dla zbioru uczacego i testowego.
+# Zbuduj kolejne drzewo, tym razem uzywajac 10-krotnej walidacji krzyzowej.
+# Porownaj jego metryki (dla zbioru uczacego i testowego) z metrykami poprzedniego drzewa.

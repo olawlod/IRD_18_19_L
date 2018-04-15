@@ -109,61 +109,63 @@ plot(performance(prediction(prognoza_ciagla,test$quality),"lift","rpp"),lwd=2, c
 #Lift is a measure of the effectiveness of a predictive model calculated 
 #as the ratio between the results obtained with and without the predictive model. 
 
-
-################################################################################
+###############################################################################
 # Zadanie 2
 ################################################################################
 
-# Uzywajac pakietu caret, zbuduj model drzewa klasyfikacyjnego 
-# do przewidywania jakosci czerwonego wina. 
-# Uzyj 3-krotnej walidacji krzyzowej. Pokaz jego metryki
-# dla zbioru uczacego i testowego.
-# Zbuduj kolejne drzewo, tym razem uzywajac 10-krotnej walidacji krzyzowej.
-# Porownaj jego metryki (dla zbioru uczacego i testowego) z metrykami poprzedniego drzewa.
+# Wybierz ostatnie 30 000 transakcji z pliku 75000-out2.csv.
+# Znajdz dla tych transakcji reguly asocjacyjne o minimalnym wsparciu 0.015
+# i minimalnej pewnosci 0.6.
+# Zwizualizuj:
+# - zaleznosci pomiedzy lift, support i confidence dla znalezionych regul
+# - macierz lewych i prawych stron regul z pokazana wartoscia lift
+# 
+# Wybierz sposrod znalezionych 4 reguly o najwyzszej pewnosci.
+# Zwizualizuj je w postaci grafow.
+# Wypisz w postaci tekstowej regule o najwyzszej pewnosci.
 
-dane <- read.csv2('data/winequality-red.csv',  stringsAsFactors = FALSE, dec = '.')
-if (typeof(dane$quality) == "integer") dane$quality <- ifelse(dane$quality >= 6, 'high', 'low')
-## Uzycie warunku na typ zmiennej zabezpiecza nas przed zepsuciem danych
-## w przypadku przypadkowego wywolania tej linijki wiecej niz 1 raz.
-## Nie jest konieczne, ale czyni kod bezpieczniejszym.
+library("arules") # do znajdowania regul
+library("arulesViz") # do wizualizacji regul
 
-library(caret)
-set.seed(1)
+# Wczytanie danych o nazwach produktow i ich obrobka z uzyciem wyrazen regularnych
+# (wyrazenia regularne nie obowiazuja na kolokwium)
 
-## podzial na zbior testowy i uczacy
-inTraining <- createDataPartition(dane$quality, p = .8, list = FALSE)
-training <- dane[ inTraining,]
-training  <- na.omit(training)
-testing  <- dane[-inTraining,]
+goods_names <- readLines("data/EB-build-goods.sql")
+goods_names <- gsub("^[a-zA-Z0-9 \\(]*,'", "", goods_names, fixed = FALSE)
+goods_names <- gsub("','", " ", goods_names, fixed = FALSE)
+goods_names <- gsub("'.*$", "", goods_names, fixed = FALSE)
 
-## 3-krotna walidacja krzyzowa
-fitControl_3 <- trainControl(
-  method = "cv",
-  number = 3)
+# Wczytanie i eksploracja danych o transakcjach
+df_all <- read.csv("data/75000-out2.csv", header = FALSE,
+                   row.names = 1)
 
-treeCaret_3 <- train(quality ~ ., data = training, 
-                          method = "rpart", 
-                          trControl = fitControl_3)
+# Wybierz ostatnie 30 000 transakcji z pliku 75000-out2.csv.
+df <- tail(df_all, 30000)
 
-plot(treeCaret_3)
-rpart.plot(treeCaret_3$finalModel)
+# Zamiana ramki danych na macierz i nadanie nazw kolumnom 
+mx <- as.matrix(df)
+colnames(mx) <- goods_names
+ts <- as(mx, "transactions")
 
-# Ewaluacja
-confusionMatrix(data = predict(treeCaret_3, training), reference = training$quality, mode = "everything")
-confusionMatrix(data = predict(treeCaret_3, testing), reference = testing$quality, mode = "everything")
+# Znajdz dla tych transakcji reguly asocjacyjne o minimalnym wsparciu 0.015
+# i minimalnej pewnosci 0.6.
+min_support <- 0.015
+min_confidence <- 0.6
 
-## 10-krotna walidacja krzyzowa
-fitControl_10 <- trainControl(
-  method = "cv",
-  number = 10)
+# Znajdowanie regul asocjacyjnych algorytmem apriori
+rules = apriori(ts, parameter=list(support=min_support, confidence=min_confidence))
 
-treeCaret_10 <- train(quality ~ ., data = training, 
-                     method = "rpart", 
-                     trControl = fitControl_10)
+# - zaleznosci pomiedzy lift, support i confidence dla znalezionych regul
+plot(rules, measure=c("support","lift"), shading="confidence") # mozna tez inaczej rozmiescic te miary na wykresie
 
-plot(treeCaret_10)
-rpart.plot(treeCaret_10$finalModel)
+# - macierz lewych i prawych stron regul z pokazana wartoscia lift
+plot(rules, method="matrix", shading="lift")
 
-# Ewaluacja
-confusionMatrix(data = predict(treeCaret_10, training), reference = training$quality, mode = "everything")
-confusionMatrix(data = predict(treeCaret_10, testing), reference = testing$quality, mode = "everything")
+# Wybierz sposrod znalezionych 4 reguly o najwyzszej pewnosci.
+subrules = head(sort(rules, by="confidence", decreasing = TRUE), 4)
+
+# Zwizualizuj je w postaci grafow.
+plot(subrules2, method="graph")
+
+# Wypisz w postaci tekstowej regule o najwyzszej pewnosci.
+inspect(subrules[1])
