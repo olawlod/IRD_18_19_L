@@ -135,6 +135,11 @@ library(caret)
 
 set.seed(1)
 
+## wczytanie danych
+
+data <- read.csv2('data/income.csv', na.strings = '')
+data <- na.omit(data)
+
 ## podzial na zbior testowy i uczacy
 inTraining <- createDataPartition(data$income, p = .8, list = FALSE)
 training <- data[ inTraining,]
