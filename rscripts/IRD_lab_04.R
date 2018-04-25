@@ -119,8 +119,8 @@ forest <- cforest(as.factor(survived) ~ pclass + sex + age + sibsp + parch + far
                   data = tdf.train, 
                   controls=cforest_unbiased(ntree=200, mtry=3))
 
-tdf.train$survival_predicted_forest<- predict(forest, tdf.train, OOB=TRUE, type = "response")
-tdf.test$survival_predicted_forest<- predict(forest, tdf.test, OOB=TRUE, type = "response")
+tdf.train$survival_predicted_forest<- predict(forest, newdata=tdf.train, OOB=TRUE, type = "response")
+tdf.test$survival_predicted_forest<- predict(forest, newdata=tdf.test, OOB=TRUE, type = "response")
 
 EvaluateClassifier('survived', 'survival_predicted_forest', tdf.train)
 EvaluateClassifier('survived', 'survival_predicted_forest', tdf.test)
