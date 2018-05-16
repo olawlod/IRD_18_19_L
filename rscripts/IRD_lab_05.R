@@ -14,6 +14,7 @@ library(rpart) # do drzewa
 library(rpart.plot) # do rysowania drzewa
 #install.packages('ROCR')
 library(ROCR) # do krzywej ROC
+library(caret) # do waznosci zmiennych w modelu
 
 # Wczytanie danych - prosze uzupelnic wlasciwa sciezke do pliku
 dane <- read.csv2('data/winequality-white.csv',  stringsAsFactors = FALSE, dec = '.')
