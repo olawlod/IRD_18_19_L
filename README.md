@@ -22,3 +22,7 @@ Kolokwium z ćwiczeń odbędzie się:
     - grupa 105 - budynek A, 113
 
 Kolokwium można pisać na własnym laptopie. W trakcie kolokwium dozwolone jest korzystanie z dowolnych materiałów papierowych lub elektronicznych, w tym materiałów z zajęć oraz wyszukiwarek internetowych. Nie jest dozwolona komunikacja w czasie rzeczywistym ani korzystanie z materiałów umieszczonych w serwisach ułatwiających taką komunikację (Google Docs, Slack, Facebook etc.).
+
+### 2018-05-26
+
+W katalogu exam znajdą Państwo przykładowe kolokwium z ćwiczeń z poprzednich lat.
