@@ -26,3 +26,7 @@ Kolokwium można pisać na własnym laptopie. W trakcie kolokwium dozwolone jest
 ### 2018-05-26
 
 W katalogu exam znajdą Państwo przykładowe kolokwium z ćwiczeń z poprzednich lat.
+
+### 2018-06-12
+
+W katalogu głównym znajdują się wyniki grupy z 17:10 z 06/06/2018.
