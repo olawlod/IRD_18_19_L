@@ -30,3 +30,9 @@ W katalogu exam znajdą Państwo przykładowe kolokwium z ćwiczeń z poprzednic
 ### 2018-06-12
 
 W katalogu głównym znajdują się wyniki grupy z 17:10 z 06/06/2018.
+
+### 2018-06-14
+
+W katalogu głównym znajdują się wyniki z sal G-116, G-235 z 2018-06-13. Na kolokwium było do zdobycia 60 punktów, więc wyniki zostały przeskalowane do zakresu 0-50 zgodnie z regulaminem przedmiotu.
+
+Osoby, które nie uzyskały zaliczenia, mogą pisać kolokwium poprawkowe: 2018-06-20, godzina 18:00, sala G-108.
