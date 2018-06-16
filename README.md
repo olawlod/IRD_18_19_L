@@ -36,3 +36,7 @@ W katalogu głównym znajdują się wyniki grupy z 17:10 z 06/06/2018.
 W katalogu głównym znajdują się wyniki z sal G-116, G-235 z 2018-06-13. Na kolokwium było do zdobycia 60 punktów, więc wyniki zostały przeskalowane do zakresu 0-50 zgodnie z regulaminem przedmiotu.
 
 Osoby, które nie uzyskały zaliczenia, mogą pisać kolokwium poprawkowe: 2018-06-20, godzina 18:00, sala G-108.
+
+### 2018-06-16
+
+W katalogu głównym znajdują się wyniki grupy z 06-06-2018 godziny 19:00, sali C2D i grupy z 13-06-2018, godziny 15:20, sali A113.
