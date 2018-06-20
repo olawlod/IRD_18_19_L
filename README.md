@@ -40,3 +40,6 @@ Osoby, które nie uzyskały zaliczenia, mogą pisać kolokwium poprawkowe: 2018-
 ### 2018-06-16
 
 W katalogu głównym znajdują się wyniki grupy z 06-06-2018 godziny 19:00, sali C2D i grupy z 13-06-2018, godziny 15:20, sali A113.
+
+### 2018-06-20
+W katalogu głównym znajdują się wyniki dzisiejszego kolokwium poprawkowego z ćwiczeń.
