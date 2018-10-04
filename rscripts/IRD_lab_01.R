@@ -30,27 +30,24 @@
 
 ### 2) Ogólnie o R
 
-## strona projektu
+## Strona projektu
 # http://www.r-project.org/
 
-## literatura: 
+## Literatura 
 
 # Kamiński B., Zawisza M. 'Receptury w R', http://bogumilkaminski.pl/projekty/)
 # Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani
-#  An Introduction to Statistical Learning with Applications in R 
-
-# http://swirlstats.com/
-
-# http://www-bcf.usc.edu/~gareth/ISL/
-
+# An Introduction to Statistical Learning with Applications in R (dostępna za darmo wraz z kodami: http://www-bcf.usc.edu/~gareth/ISL/)
 # http://cran.r-project.org/manuals.html
 
-# Internet
+## Kursy
 
-# instalacja 
+# http://swirlstats.com/
+# https://www.datacamp.com/courses/free-introduction-to-r
+
+## Instalacja 
 # http://r.meteo.uni.wroc.pl/
 # https://www.rstudio.com/
-
 
 ## wybrane skróty klawiszowe w R Studio
 # CTRL+ENTER / CTRL+R: wykonywanie instrukcji ze skryptu (w R GUI - F5): 
