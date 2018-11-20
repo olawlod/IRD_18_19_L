@@ -109,22 +109,6 @@ tdf.test$survival_predicted_deeper <- predict(tree_deeper, tdf.test, type = "cla
 EvaluateClassifier('survived', 'survival_predicted_deeper', tdf.train)
 EvaluateClassifier('survived', 'survival_predicted_deeper', tdf.test)
 
-# Las losowy, czyli kombinacja wielu drzew
-
-#install.packages("party")
-library(party)
-
-set.seed(123)
-forest <- cforest(as.factor(survived) ~ pclass + sex + age + sibsp + parch + fare + embarked,
-                  data = tdf.train, 
-                  controls=cforest_unbiased(ntree=200, mtry=3))
-
-tdf.train$survival_predicted_forest<- predict(forest, newdata=tdf.train, OOB=TRUE, type = "response")
-tdf.test$survival_predicted_forest<- predict(forest, newdata=tdf.test, OOB=TRUE, type = "response")
-
-EvaluateClassifier('survived', 'survival_predicted_forest', tdf.train)
-EvaluateClassifier('survived', 'survival_predicted_forest', tdf.test)
-
 ################################################################################
 ### Przyklad 2: Pakiet caret - na przykladzie drzewa klasyfikacyjnego 
 ################################################################################
