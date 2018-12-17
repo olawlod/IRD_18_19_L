@@ -9,4 +9,4 @@ Indukowane Reguły Decyzyjne w Szkole Głównej Handlowej, semestr zimowy roku a
 Zgodnie z ustaleniami z pierwszych zajęć (2018-10-04), zajęcia wcześniejszej grupy w pierwszym potoku będą zaczynały się o 17:20. (MK)
 
 ### 2018-12-17
-Kolokwium z ćwiczeń dla osób wyjeżdżających na wymianę odbędą się w dniu 2018-12-20, godz. 19:00, razem z grupą ćwiczeniową w tym dniu. Podczas tego kolokwium obowiązuje Państwa materiał zrealizowany do zajęć nr 5 włącznie.
+Powtarzam informację na Niezbędnikiem: kolokwium z ćwiczeń dla osób wyjeżdżających na wymianę odbędzie się w dniu 2018-12-20, godz. 19:00, razem z grupą ćwiczeniową w tym dniu. Podczas tego kolokwium obowiązuje Państwa materiał zrealizowany do zajęć nr 5 włącznie.
