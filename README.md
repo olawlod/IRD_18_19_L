@@ -10,3 +10,6 @@ Zgodnie z ustaleniami z pierwszych zajęć (2018-10-04), zajęcia wcześniejszej
 
 ### 2018-12-17
 Powtarzam informację za Niezbędnikiem: kolokwium z ćwiczeń dla osób wyjeżdżających na wymianę odbędzie się w dniu 2018-12-20, godz. 19:00, razem z grupą ćwiczeniową w tym dniu. Podczas tego kolokwium obowiązuje Państwa materiał zrealizowany do zajęć nr 5 włącznie.
+
+### 2018-12-21
+W katalogu exam znajdą Państwo wyniki wczorajszego kolokwium dla osób wyjeżdżających na wymianę.
