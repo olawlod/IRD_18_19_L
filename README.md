@@ -13,3 +13,6 @@ Powtarzam informację za Niezbędnikiem: kolokwium z ćwiczeń dla osób wyjeżd
 
 ### 2018-12-21
 W katalogu exam znajdą Państwo wyniki wczorajszego kolokwium dla osób wyjeżdżających na wymianę.
+
+### 2019-01-05
+Do prowadzonych przeze mnie grup (102 i 103) - na najbliższym spotkaniu 17 stycznia odbędą się normalne zajęcia (a nie kolokwium, jak podałem do informacji grupie 102). Kolokwium odbędzie się 24 stycznia odpowiednio o 17.10 i 19.00 w sali C-5d (a więc wszystkie grupy piszą tego samego dnia). (AN)
