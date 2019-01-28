@@ -18,3 +18,6 @@ W katalogu exam znajdą Państwo wyniki wczorajszego kolokwium dla osób wyjeżd
 Do prowadzonych przeze mnie grup (102 i 103) - na najbliższym spotkaniu 17 stycznia odbędą się normalne zajęcia (a nie kolokwium, jak podałem do informacji grupie 102). Kolokwium odbędzie się 24 stycznia odpowiednio o 17.10 i 19.00 w sali C-5d (a więc wszystkie grupy piszą tego samego dnia). (AN)
 
 Grupy 100 i 101 piszą kolokwium na zajęciach nr 8 zgodnie z rozkładem, tj. 24 stycznia, w standardowych godzinach i sali. (MK)
+
+### 2019-01-28
+W katalogu exam znajdą Państwo wyniki kolokwium z ćwiczeń z 2019-01-24 dla osób, które pisały w Sabinkach. (MK)
