@@ -21,3 +21,6 @@ Grupy 100 i 101 piszą kolokwium na zajęciach nr 8 zgodnie z rozkładem, tj. 24
 
 ### 2019-01-28
 W katalogu exam znajdą Państwo wyniki kolokwium z ćwiczeń z 2019-01-24 dla osób, które pisały w Sabinkach. (MK)
+
+### 2019-01-30
+Osoby zainteresowane omówieniem sprawdzanych przeze mnie prac zapraszam w czwartek 2019-01-31 o 09:00 do Jajka w bud. G. (MK)
