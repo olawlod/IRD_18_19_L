@@ -24,3 +24,6 @@ W katalogu exam znajdą Państwo wyniki kolokwium z ćwiczeń z 2019-01-24 dla o
 
 ### 2019-01-30
 Osoby zainteresowane omówieniem sprawdzanych przeze mnie prac zapraszam w czwartek 2019-01-31 o 09:00 do Jajka w bud. G. (MK)
+
+### 2019-01-31
+Przekazuję informację za Niezbędnikiem: II termin kolokwium z ćwiczeń odbędzie się 2019-02-21 (czwartek), godzina 17:10-18:50, sala C-4d.
