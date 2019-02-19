@@ -3,8 +3,8 @@ Indukowane Reguły Decyzyjne w Szkole Głównej Handlowej, semestr zimowy roku a
 
 [Strona części wykładowej przedmiotu na Niezbędniku SGH](https://www.e-sgh.pl/mwrzosek/ird/)
 
-grupy: 100, 102
-zajęcia: co drugi czwartek 17.10-18.40 oraz 19.00-20.30, sala G-235
+grupy: 100, 102  
+zajęcia: co drugi czwartek 17.10-18.40 oraz 19.00-20.30, sala G-235  
 kontakt: nosarzewski.aleks@gmail.com
 
 ## Plan zajęć
