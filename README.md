@@ -17,4 +17,5 @@ __28.02.2019 - Wstęp do programowania w języku R__
 30.05.2019 - Kolokwium (do potwierdzenia)  
 
 ## Ogłoszenia
-Tutaj znajdą się wszelkie ogłoszenia.
+### Pierwsze zajęcia dla grupy z godziny 19.00
+Pierwsze zajęcia dla grupy z godziny 19.00 odbędą się wyjątkowo w dniu 07.03.2019, a nie jak w harmonogramie 28.02.2019.
