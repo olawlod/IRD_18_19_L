@@ -18,7 +18,7 @@
 ## ćwiczenia: kolokwium za 50pkt, 2 terminy w sesji
 ## można mieć materiały (dowolne) i korzystać z Internetu, nie można się komunikować
 ## wykład: test za 50pkt
-# adres repozytorium z materiałami: https://github.com/kaftanowicz/ird
+# adres repozytorium z materiałami: https://github.com/nosarzewski/SGH_SDM_18
 
 ### 1.1) Dygresja: kontrola wersji, git, github
 
