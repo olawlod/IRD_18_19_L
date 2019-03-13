@@ -8,8 +8,8 @@ zajęcia: co drugi czwartek 17.10-18.40 oraz 19.00-20.30, sala G-235
 kontakt: nosarzewski.aleks@gmail.com
 
 ## Plan zajęć
-__28.02.2019 - Wstęp do programowania w języku R__  
-14.03.2019 - Przetwarzanie danych w R (pakiet dplyr)  
+28.02.2019 - Wstęp do programowania w języku R  
+__14.03.2019 - Przetwarzanie danych w R (pakiet dplyr)__  
 28.03.2019 - Wizualizacja danych (pakiet ggplot2)  
 11.04.2019 - Drzewa decyzyjne  
 25.04.2019 - Ocena jakości modeli  
@@ -17,5 +17,5 @@ __28.02.2019 - Wstęp do programowania w języku R__
 30.05.2019 - Kolokwium (do potwierdzenia)  
 
 ## Ogłoszenia
-### Pierwsze zajęcia dla grupy z godziny 19.00
-Pierwsze zajęcia dla grupy z godziny 19.00 odbędą się wyjątkowo w dniu 07.03.2019, a nie jak w harmonogramie 28.02.2019.
+### Przypomnienie odnośnie projektu
+Na wykład dnia 9 kwietnia 2019 należy przygotować skład grupy do projektu (maksymalnie 3 osoby), temat projektu oraz dane, na podstawie których projekt będzie realizowany.
