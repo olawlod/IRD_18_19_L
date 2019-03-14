@@ -43,7 +43,7 @@ d
 
 x <- 1:5
 y <- -(1:5)
-ifelse(zmienna < 0, x, y)
+ifelse(zmienna < 0, y, x)
 
 ## Pętle
 
@@ -190,32 +190,44 @@ getwd()
 
 #ustalenie katalogu roboczego (tam, gdzie znajduja sie pliki z danymi do przykladow)
 setwd("github/data/")
-
+path <- "https://raw.githubusercontent.com/nosarzewski/IRD_18_19_L/master/data/"
 
 ##wczytywanie roznego rodzaju danych z pliku
 
 #wartosci rozdzielone przecinkami
+titanic <- measure_time(read.csv, paste0(path, "Titanic.csv"))
+titanic <- measure_time(read_csv, paste0(path, "Titanic.csv"))
 
-titanic <- measure_time(read.csv, "Titanic.csv")
-titanic <- measure_time(read_csv, "Titanic.csv")
+#jesli nie dziala wariant z podawaniem sciezki nalezy sciagnac dane, zapisac w working dir i wczytac recznie jak ponizej
+#titanic <- measure_time(read.csv, "Titanic.csv")
+#titanic <- measure_time(read_csv, "Titanic.csv")
+
 # Dygresja: data.table potrafi być jeszcze szybszy
 library(data.table)
-titanic <- measure_time(fread, "Titanic.csv")
+titanic <- measure_time(fread, paste0(path, "Titanic.csv"))
+#titanic <- measure_time(fread, "Titanic.csv")
 
-przecinkowe <- read_csv("Titanic.csv")
+przecinkowe <- read_csv(paste0(path, "Titanic.csv"))
+#przecinkowe <- read_csv("Titanic.csv")
 head(przecinkowe)
 
 #wartosci rozdzielone srednikami
-srednikowe <- read_csv2("cars.csv")
+srednikowe <- read_csv2(paste0(path, "cars.csv"))
+#srednikowe <- read_csv2("cars.csv")
 head(srednikowe)
 
 #wartosci rozdzielone stala szerokoscia
 #fwf_widths sluzy podaniu szerokosci kolumn i ich nazw
-stale <- read_fwf(file="iris.txt", fwf_widths(c(3, 5, 3, 5, 6), c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width", "Species")))
+stale <- read_fwf(file = paste0(path, "iris.txt"), 
+                  fwf_widths(c(3, 5, 3, 5, 6), 
+                             c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width", "Species")))
+#stale <- read_fwf(file="iris.txt", fwf_widths(c(3, 5, 3, 5, 6), c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width", "Species")))
 head(stale)
 
 #wartosci rozdzielone spacjami
-spacjowe <- read_table("heights.txt", col_names=c("height", "cubit"))
+spacjowe <- read_table(paste0(path, "heights.txt"), 
+                       col_names=c("height", "cubit"))
+#spacjowe <- read_table("heights.txt", col_names=c("height", "cubit"))
 head(spacjowe)
 
 ##wczytanie danych z ciagu liczb - pierwsza linijka zawsze sluzy jako nazwy kolumn
@@ -235,10 +247,12 @@ read_csv("#Komentarz
          1,2,3", comment="#")
 
 #wczytanie danych bez nazw kolumn
-esoph <- read_csv("esoph.csv", col_names=FALSE)
+esoph <- read_csv(paste0(path, "esoph.csv"), col_names=FALSE)
+#esoph <- read_csv("esoph.csv", col_names=FALSE)
 head(esoph)
 
 #nadanie wlasnych nazw dla kolumn
+esoph <- read_csv(paste0(path, "esoph.csv"), col_names=c("jeden", "2", "trzy", "4", "piec"))
 esoph <- read_csv("esoph.csv", col_names=c("jeden", "2", "trzy", "4", "piec"))
 head(esoph)
 
@@ -458,5 +472,3 @@ summary(RuffeSLRH92)
 # posortuj dane wedlug miesiecy i plci rybek
 # dodaj nowa kolumne bedaca logarytmem dlugosci rybek, nazwij ja log_l
 # wskaz liczbe rybek dla kazdego miesiaca i plci, zapisz wynik jako sum_mon_sex
-
-
