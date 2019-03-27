@@ -9,8 +9,8 @@ kontakt: nosarzewski.aleks@gmail.com
 
 ## Plan zajęć
 28.02.2019 - Wstęp do programowania w języku R  
-__14.03.2019 - Przetwarzanie danych w R (pakiet dplyr)__  
-28.03.2019 - Wizualizacja danych (pakiet ggplot2)  
+14.03.2019 - Przetwarzanie danych w R (pakiet dplyr)  
+__28.03.2019 - Wizualizacja danych (pakiet ggplot2)__  
 11.04.2019 - Drzewa decyzyjne  
 25.04.2019 - Ocena jakości modeli  
 16.05.2019 - Lasy losowe i reguły asocjacyjne  
