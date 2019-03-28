@@ -21,6 +21,7 @@ __11.04.2019 - Drzewa decyzyjne__
 Na wykład dnia 9 kwietnia 2019 należy przygotować skład grupy do projektu (maksymalnie 3 osoby), temat projektu oraz dane, na podstawie których projekt będzie realizowany.
 
 ### Przykładowe źródła danych do projektu
-Poniżej dwie bazy danych, z których można (lecz nie trzeba) skorzystać poszukując danych do projektu zaliczeniowego:
+Poniżej trzy bazy danych, z których można (lecz nie trzeba) skorzystać poszukując danych do projektu zaliczeniowego:
+- [Diagnoza Społeczna](http://www.diagnoza.com/),
 - [European Social Survey](https://www.europeansocialsurvey.org/),
-- [Diagnoza Społeczna](http://www.diagnoza.com/).
+- [Kaggle](https://www.kaggle.com/datasets) (tu polecam dobrze przejrzeć zbiór pod kątem tego, czy na pewno nadaje się do Państwa modelu, ponieważ niektóre zbiory są dla innej klasy problemów, np. image recognition).
