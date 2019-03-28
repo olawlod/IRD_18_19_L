@@ -20,7 +20,7 @@ __11.04.2019 - Drzewa decyzyjne__
 ### Przypomnienie odnośnie projektu
 Na wykład dnia 9 kwietnia 2019 należy przygotować skład grupy do projektu (maksymalnie 3 osoby), temat projektu oraz dane, na podstawie których projekt będzie realizowany.
 
-### Przykładowe żródła danych do projektu
+### Przykładowe źródła danych do projektu
 Poniżej dwie bazy danych, z których można (lecz nie trzeba) skorzystać poszukując danych do projektu zaliczeniowego:
 - [European Social Survey](www.europeansocialsurvey.org),
 - [Diagnoza Społeczna](www.diagnoza.com).
