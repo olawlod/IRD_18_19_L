@@ -10,8 +10,8 @@ kontakt: nosarzewski.aleks@gmail.com
 ## Plan zajęć
 28.02.2019 - Wstęp do programowania w języku R  
 14.03.2019 - Przetwarzanie danych w R (pakiet dplyr)  
-__28.03.2019 - Wizualizacja danych (pakiet ggplot2)__  
-11.04.2019 - Drzewa decyzyjne  
+28.03.2019 - Wizualizacja danych (pakiet ggplot2)  
+__11.04.2019 - Drzewa decyzyjne__  
 25.04.2019 - Ocena jakości modeli  
 16.05.2019 - Lasy losowe i reguły asocjacyjne  
 30.05.2019 - Kolokwium (do potwierdzenia)  
@@ -19,3 +19,8 @@ __28.03.2019 - Wizualizacja danych (pakiet ggplot2)__
 ## Ogłoszenia
 ### Przypomnienie odnośnie projektu
 Na wykład dnia 9 kwietnia 2019 należy przygotować skład grupy do projektu (maksymalnie 3 osoby), temat projektu oraz dane, na podstawie których projekt będzie realizowany.
+
+### Przykładowe żródła danych do projektu
+Poniżej dwie bazy danych, z których można (lecz nie trzeba) skorzystać poszukując danych do projektu zaliczeniowego:
+- [European Social Survey](www.europeansocialsurvey.org),
+- [Diagnoza Społeczna](www.diagnoza.com).
