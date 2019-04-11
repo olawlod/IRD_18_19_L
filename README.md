@@ -14,7 +14,7 @@ kontakt: nosarzewski.aleks@gmail.com
 __11.04.2019 - Drzewa decyzyjne__  
 25.04.2019 - Ocena jakości modeli  
 16.05.2019 - Lasy losowe i reguły asocjacyjne  
-30.05.2019 - Kolokwium (do potwierdzenia)  
+30.05.2019 - Kolokwium
 
 ## Ogłoszenia
 ### Przypomnienie odnośnie projektu
