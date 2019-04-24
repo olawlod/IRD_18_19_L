@@ -11,8 +11,8 @@ kontakt: nosarzewski.aleks@gmail.com
 28.02.2019 - Wstęp do programowania w języku R  
 14.03.2019 - Przetwarzanie danych w R (pakiet dplyr)  
 28.03.2019 - Wizualizacja danych (pakiet ggplot2)  
-__11.04.2019 - Drzewa decyzyjne__  
-25.04.2019 - Ocena jakości modeli  
+11.04.2019 - Drzewa decyzyjne  
+__25.04.2019 - Ocena jakości modeli__  
 16.05.2019 - Lasy losowe i reguły asocjacyjne  
 30.05.2019 - Kolokwium
 
