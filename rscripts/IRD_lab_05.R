@@ -17,7 +17,8 @@ library(ROCR) # do krzywej ROC
 library(caret) # do waznosci zmiennych w modelu
 
 # Wczytanie danych - prosze uzupelnic wlasciwa sciezke do pliku
-dane <- read.csv2('data/winequality-white.csv',  stringsAsFactors = FALSE, dec = '.')
+dane <- read.csv2('https://bit.ly/2L0HtVa',  stringsAsFactors = FALSE, dec = '.')
+#dane <- read.csv2('data/winequality-white.csv',  stringsAsFactors = FALSE, dec = '.')
 # read.csv2 zamiast read.csv ze wzgledu na separator kolumn
 # dec = '.' - wskazujemy, że separatorem dziesiętnym jest kropka
 
@@ -25,18 +26,17 @@ dane <- read.csv2('data/winequality-white.csv',  stringsAsFactors = FALSE, dec =
 # Eksploracja danych
 ################################################################################
 
-head(dane)
-str(dane)
-summary(dane)
+head(dane) # pierwsze 6 obserwacji
+str(dane) # typy zmiennych
+summary(dane) # podstawowe statystyki
 
-hist(dane$quality)
+hist(dane$quality) # rozklad zmiennej objasnianej
 
 ################################################################################
 # Drzewa klasyfikacyjne - powtorzenie, ocena dokladnosci
 ################################################################################
 
-# zmienna objasniana zamieniamy na zmienna binarna: jezeli quality >= 6, to jakosc wysoka, wpp niska:
-
+# przekodowanie zmiennej quality na binarna: jezeli quality >= 6, to jakosc wysoka, wpp niska:
 dane$quality <- ifelse(dane$quality >= 6, 'high', 'low')
 
 set.seed(1)
@@ -53,31 +53,41 @@ d.klas2 <- rpart(quality~., data = train, method = "class", cp = 0.005)
 rpart.plot(d.klas1, under=FALSE, fallen.leaves = FALSE, cex = 0.3)
 rpart.plot(d.klas2, under=FALSE, fallen.leaves = FALSE, cex = 0.3)
 
-# 3) Classification matrix + its statistics
+# 3) Macierz pomylek + statystyki oceniajace jakosc modeli
 CM <- list()
 CM[["d.klas1"]] <- table(predict(d.klas1, new = test, type = "class"), test$quality)
 CM[["d.klas2"]] <- table(predict(d.klas2, new = test, type = "class"), test$quality)
 
-# Accuracy = odsetek poprawnie sklasyfikowanych odpowiedzi
-CalcAcc <- function(macierz) {
-  return(sum(diag(macierz))/sum(macierz))
+EvaluateModel <- function(classif_mx)
+{
+  # Sciagawka: https://en.wikipedia.org/wiki/Sensitivity_and_specificity#Confusion_matrix
+  true_positive <- classif_mx[1,1]
+  true_negative <- classif_mx[2,2]
+  condition_positive <- sum(classif_mx[ ,1])
+  condition_negative <- sum(classif_mx[ ,2])
+  predicted_positive <- sum(classif_mx[1, ])
+  predicted_negative <- sum(classif_mx[2, ])
+  # Uzywanie zmiennych pomocniczych o sensownych nazwach
+  # ulatwia zrozumienie, co sie dzieje w funkcji
+  accuracy <- (true_positive + true_negative) / sum(classif_mx)
+  MER <- 1 - accuracy # Misclassification Error Rate
+  # inaczej: MER < - (false_positive + false_positive) / sum(classif_mx)
+  precision <- true_positive / predicted_positive
+  sensitivity <- true_positive / condition_positive # inaczej - Recall / True Positive Rate (TPR)
+  specificity <- true_negative / condition_negative
+  F1 <- (2 * precision * sensitivity) / (precision + sensitivity)
+  return(list(accuracy = accuracy, 
+              MER = MER,
+              precision = precision,
+              sensitivity = sensitivity,
+              specificity = specificity,
+              F1 = F1))
+  # Notacja "accuracy = accuracy" itd. jest potrzebna,
+  # zeby elementy listy mialy nazwy.
 }
 
-printAcc <- function () {
-  cat(toupper("Accuracy dla wybranych modeli \n"))
-  cat("\n")
-  Accuracy <- data.frame(model = names(CM), Accuracy = round(sapply(CM, CalcAcc), 6))
-  print(Accuracy, row.names = FALSE)
-  return(Accuracy)
-}
-
-Accuracy <- printAcc()
-
-# Misclassification rate = 1-Accuracy = odsetek blednie sklasyfikowanych odpowiedzi
-MER <- sapply(Accuracy[2], function(x) 1-x)
-colnames(MER) <- "Missclassification Error Rate"
-rownames(MER) <- Accuracy[[1]]
-MER
+EvaluateModel(CM[["d.klas1"]])
+EvaluateModel(CM[["d.klas2"]])
 
 ###############################################################################################
 # ROC/LIFT/GAIN Curve
@@ -113,7 +123,8 @@ plot(performance(prediction(prognoza_ciagla,test$quality),"lift","rpp"),lwd=2, c
 ################################################################################
 
 # Wczytanie danych - ponownie
-dane <- read.csv2('data/winequality-white.csv',  stringsAsFactors = FALSE, dec = '.')
+dane <- read.csv2('https://bit.ly/2L0HtVa',  stringsAsFactors = FALSE, dec = '.')
+#dane <- read.csv2('data/winequality-white.csv',  stringsAsFactors = FALSE, dec = '.')
 
 # Inicjalizacja ziarna do zmiennych pseudolosowych
 set.seed(1)
