@@ -12,8 +12,8 @@ kontakt: nosarzewski.aleks@gmail.com
 14.03.2019 - Przetwarzanie danych w R (pakiet dplyr)  
 28.03.2019 - Wizualizacja danych (pakiet ggplot2)  
 11.04.2019 - Drzewa decyzyjne  
-__25.04.2019 - Ocena jakości modeli__  
-16.05.2019 - Lasy losowe i reguły asocjacyjne  
+25.04.2019 - Ocena jakości modeli  
+__16.05.2019 - Lasy losowe i reguły asocjacyjne__  
 30.05.2019 - Kolokwium
 
 ## Ogłoszenia
